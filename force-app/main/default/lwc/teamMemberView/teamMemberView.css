@@ -1,0 +1,18 @@
+.badge-style{
+    border-color: royalblue;
+    border-radius: .25rem;
+    background-color: royalblue;
+    color: snow;
+    padding: .2rem .2rem .2rem .2rem;
+}
+
+.badge-grid{
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.component-css{
+    max-width: 100%;
+}
+
+

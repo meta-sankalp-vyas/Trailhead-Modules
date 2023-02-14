@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Log a Call" icon-name="utility:adduser">
+        <div class="slds-grid slds-grid_vertical">
+            <div>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" label="Subject" placeholder="type here..." maxlength="80" name="name" value={name} onchange={genericOnChange}></lightning-input>
+                </div>
+            </div>
+            <div>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" label="Employee Id" placeholder="type here..." maxlength="10" name="empId" value={empId} onchange={genericOnChange}></lightning-input>
+                </div>
+            </div>
+            <div>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input-rich-text
+                        value={myVal}
+                        formats={formats}>
+                    </lightning-input-rich-text>
+                </div>
+            </div>
+            <div>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-button variant="brand" label="Save" title="Save" onclick={handleCreateTeamMember}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

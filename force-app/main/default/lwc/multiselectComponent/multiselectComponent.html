@@ -1,0 +1,69 @@
+<template>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="combobox-id-1">{label}</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-combobox_container">
+                        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-close dropdown-div"
+                            aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+                                role="none">
+                                <input type="text" class="slds-input slds-combobox__input" id="combobox-id-1"
+                                    aria-controls="listbox-id-1" autocomplete="off" role="textbox"
+                                    placeholder="Select an Option" value={singleSelectedOption} onclick={toggleDropDown}
+                                    onkeyup={handleKeyPress} />
+                                <span if:true={dropDownClosed}
+                                    class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+                                    <!--lightning-icon icon-name="utility:down" class="slds-float_right" variant="bare" alternative-text="Open"></lightning-icon-->
+                                    <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                        aria-hidden="true">
+                                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+                                    </svg>
+                                </span>
+                                <span if:false={dropDownClosed}
+                                    class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+                                    <!--lightning-icon icon-name="utility:up" class="slds-float_right" variant="bare" alternative-text="Close"></lightning-icon-->
+                                    <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                        aria-hidden="true">
+                                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#up"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
+                                role="listbox">
+                                <ul class="slds-listbox slds-listbox_vertical multiselect_listitems_ul" role="presentation">
+                                    <template for:each={data} for:item=item>
+                                        <li role="presentation" class="slds-listbox__item" key={item.id} data-set={item.id}
+                                            onclick={optionClicked;}>
+                                            <div data-set={item.id}
+                                                class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                                role="option">
+                                                <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                                <span class="slds-media__body">
+                                                    <span class="slds-truncate" title={item.value}>{item.label}</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div if:true={multiselect}>
+                    <div if:true={showSelectedAsPills}>
+                        <div class="slds-pill_container" if:true={multiSelectedOptions.length}>
+                            <ul class="slds-listbox slds-listbox_horizontal pill-box-horizontal" role="listbox" aria-label="Selected Options:"
+                                aria-orientation="horizontal">
+                                <template for:each={multiSelectedOptions} for:item=item>
+                                    <li class="slds-listbox-item" role="presentation" key={item.id}>
+                                        <span class="slds-pill" role="option" tabindex="0" aria-selected="true" id={item.id}>
+                                            <span class="slds-pill__bare" title="Full pill label verbiage mirrored here">{item.label}</span>
+                                        </span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</template>

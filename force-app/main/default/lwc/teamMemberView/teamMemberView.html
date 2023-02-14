@@ -1,0 +1,79 @@
+<template>
+    <template if:false={create}>
+        <lightning-card title="Team Member" icon-name="standard:people">
+            <template if:true={loading}>
+                <div>
+                    <lightning-spinner
+                        alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                </div>
+            </template>
+            <template if:false={loading}>
+                <div class="slds-var-m-around_medium">
+                    <!-- Show Team Member -->
+                    <template if:true={teamMember}>
+                        <div class="slds-grid slds-grid_align-left slds-wrap badge-grid">
+                            <div class="slds-col slds-size_1-of-1 badge-grid">
+                                <c-polaroid-image imagesrc={teamMemberResource.profile_avatar} alttext={teamMember.Name} bottomtext={teamMember.Employee_Id__c} ></c-polaroid-image>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 badge-grid">
+                                <p class="slds-var-m-bottom_xx-small">
+                                    <b>Name:</b>
+                                </p>
+                                <div class="slds-grid slds-grid_align-left slds-wrap badge-grid">
+                                    <span>{teamMember.Name}</span>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 badge-grid">
+                                <p class="slds-var-m-bottom_xx-small">
+                                    <b>Skills:</b>
+                                </p>
+                                <div class="slds-grid slds-grid_align-left slds-wrap badge-grid">
+                                    <template for:each={skillBadges} for:item="skill">
+                                        <div class="slds-col slds-size_1-of-1 badge-grid"  key={skill}>
+                                            <span class="slds-badge_lightest badge-style">{skill}</span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <!-- Data failed to load -->
+                    <template if:true={error}>
+                        <div class="slds-text-color_error">
+                            {errorMessage}
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </lightning-card>
+    </template>
+    <template if:true={create}>
+        <lightning-card title="Add Team Member" icon-name="utility:adduser">
+            <div class="slds-grid slds-grid_vertical">
+                <div>
+                    <div class="slds-p-around_medium lgc-bg">
+                        <lightning-input type="text" label="Name" placeholder="type here..." maxlength="80" name="name" value={name} onchange={genericOnChange}></lightning-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="slds-p-around_medium lgc-bg">
+                        <lightning-input type="text" label="Employee Id" placeholder="type here..." maxlength="10" name="empId" value={empId} onchange={genericOnChange}></lightning-input>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="slds-p-around_medium lgc-bg component-css">
+                            <c-multiselect-component object-api-name = "Team_Member__c" field-api-name = "Skills__c" multiselect = "true" remove-none-as-option = "true"></c-multiselect-component>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="slds-p-around_medium lgc-bg">
+                        <lightning-button variant="brand" label="Add" title="Add" onclick={handleCreateTeamMember}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+</template>

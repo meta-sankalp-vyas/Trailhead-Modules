@@ -1,0 +1,10 @@
+<template>
+    <div class="allStars">
+        <template for:each={selectedStars} for:item="star">
+            <span class="rating-theme" key={star.id}><lightning-icon icon-name="utility:favorite" class="slds-current-color" size="x-small"></lightning-icon></span>
+        </template>
+        <template for:each={unselectedStars} for:item="star">
+            <span class="blank-theme" key={star.id}><lightning-icon icon-name="utility:favorite" class="slds-current-color" size="x-small"></lightning-icon></span>
+        </template>
+    </div>
+</template>

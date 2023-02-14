@@ -1,0 +1,44 @@
+<template>
+	<template if:false={showTeamView}>
+		<lightning-card title="Teams" icon-name="standard:groups">
+			<div class="slds-card__body_inner">
+				<!-- Start Team list -->
+				<template if:true={teams.data}>
+					<lightning-input type="search"
+						onchange={handleSearchTermChange}
+						variant="label-hidden"
+						class="slds-var-m-bottom_small"
+						label="Search"
+						placeholder="Search for teams"
+						value={searchTerm}>
+					</lightning-input>
+					<div class="slds-grid slds-gutters slds-wrap">
+						<template for:each={teams.data} for:item="team">
+							<div class="slds-col slds-size_4-of-12 slds-m-bottom_x-small team-card-css" key={team.Id}>
+								<c-team-card team-record={team} data-set={team.Id} onclick={handleViewTeamMembers}></c-team-card>
+							</div>
+						</template>
+					</div>
+					<!-- No Teams found -->
+					<template if:false={hasResults}>
+						<div class="slds-align_absolute-center slds-var-m-vertical_small">
+							<template if:false={searchTerm}>No Teams Present...</template>
+							<template if:true={searchTerm}>No Teams found with this Name...</template>
+						</div>
+					</template>
+				</template>
+				<!-- End Team list -->
+				<!-- Data failed to load -->
+				<template if:true={teams.error}>
+					<div class="slds-text-color_error">
+						An error occurred while loading the Team list
+					</div>
+				</template>
+			</div>
+		</lightning-card>
+	</template>
+	<template if:true={showTeamView}>
+		<div><lightning-button variant="bare" label="Back to Team List" title="Back To Team List" onclick={backToListView}></lightning-button></div>
+		<c-team-view team-id={selectedTeamId}></c-team-view>
+	</template>
+</template>

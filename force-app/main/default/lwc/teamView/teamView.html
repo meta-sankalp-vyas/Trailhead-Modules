@@ -1,0 +1,31 @@
+<template>
+    <div style="width:1024px;height:720px">
+        <div class="slds-grid slds-gutters_xxx-small slds-wrap slds-p-around_medium">
+            <template if:true={teamRecord}>
+                <div class="slds-col slds-size_1-of-1 slds-grid slds-wrap">
+                    <div class="slds-col slds-size_7-of-12">
+                        <c-team-card team-record={teamRecord} showdescription={showTeamCardDescription}></c-team-card>
+                    </div>
+                    <div class="slds-col slds-size_4-of-12 slds-col_bump-left slds-p-around_medium">
+                        <c-polaroid-image imagesrc={teamMemberResource.team_avatar} alttext={teamRecord.Name} bottomtext={teamRecord.Name} ></c-polaroid-image>
+                    </div>
+                </div>
+                <div class="slds-wrap slds-col slds-size_1-of-1 team-detail-card provide-shadow slds-p-around_small">
+                    <div class="slds-col slds-size_10-of-12">
+                        <div class="slds-grid slds-grid_align-left slds-wrap slds-card__header-title">
+                            <span class="slds-card__header-link">{teamRecord.Name} Members :</span>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <c-team-member-list team-id={teamId}></c-team-member-list>
+                    </div>
+                </div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-grid slds-grid_align-left slds-wrap slds-gutters_x-small team-detail-card provide-shadow">
+                    {error}
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

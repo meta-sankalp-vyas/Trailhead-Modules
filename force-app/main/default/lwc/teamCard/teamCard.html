@@ -1,0 +1,37 @@
+<template>
+    <div title="Team Detail">
+        <div class="slds-grid slds-grid_align-left slds-wrap slds-gutters_x-small team-detail-card provide-shadow">
+            <div class="slds-col slds-size_1-of-12">
+                <lightning-icon icon-name="standard:groups" size="small" alternative-text="Team" title="Team"></lightning-icon>
+            </div>
+            <div class="slds-col slds-size_11-of-12">
+                <div class="slds-grid slds-grid_align-left slds-wrap slds-card__header-title">
+                    <span class="slds-card__header-link">{teamRecord.Name}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1">
+                <div class="slds-grid slds-grid_align-left slds-wrap">
+                    <template if:true={showdescription}>
+                        <span>{teamRecord.Description__c}</span>
+                    </template>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1">
+                <p class="slds-var-m-bottom_xx-small">
+                    <b>Manager Name:</b>
+                </p>
+                <div class="slds-grid slds-grid_align-left slds-wrap">
+                    <span>{teamRecord.Manager_Name__c}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1">
+                <p class="slds-var-m-bottom_xx-small">
+                    <b>Team Rating:</b>
+                </p>
+                <div class="slds-grid slds-grid_align-left slds-wrap">
+                    <c-star-rating rating={teamRecord.Rating__c} total="5"></c-star-rating>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

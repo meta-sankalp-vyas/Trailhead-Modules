@@ -1,0 +1,61 @@
+.multiselect_theme-yellowgreen{
+    background-color: ghostwhite;
+    color: yellowgreen;
+}
+.multiselect_theme-yellowgreen:hover{
+    background-color: yellowgreen;
+    color: ghostwhite;
+}
+
+.multiselect_theme-black_white{
+    background-color: black;
+    color: white;
+}
+.multiselect_theme-black_white:hover{
+    background-color: dimgrey;
+}
+
+.multiselect_theme-slateblue{
+    background-color: ghostwhite;
+    color: darkslateblue;
+}
+.multiselect_theme-slateblue:hover{
+    background-color: darkslateblue;
+    color: ghostwhite;
+}
+
+.multiselect_theme-firebrick{
+    background-color: cornsilk;
+    color: firebrick;
+}
+.multiselect_theme-firebrick:hover{
+    background-color: firebrick;
+    color: ghostwhite;
+}
+
+.multiselect_theme-maroon{
+    background-color: maroon;
+    color: mintcream;
+}
+.multiselect_theme-maroon:hover{
+    background-color: mintcream;
+    color: maroon;
+}
+
+.multiselect_theme-pink{
+    background-color: lightpink;
+    color: ghostwhite;
+}
+.multiselect_theme-pink:hover{
+    background-color:  ghostwhite;
+    color: pink;
+}
+
+.multiselect_theme-royalblue{
+    background-color: royalblue;
+    color: ghostwhite;
+}
+.multiselect_theme-royalblue:hover{
+    background-color:  ghostwhite;
+    color: royalblue;
+}

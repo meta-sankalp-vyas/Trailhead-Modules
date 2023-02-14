@@ -1,0 +1,61 @@
+<template>
+    <template if:true={loading}>
+        <div>
+            <lightning-spinner
+                alternative-text="Loading..." variant="brand">
+            </lightning-spinner>
+        </div>
+    </template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_7-of-12">
+            <div class="slds-col slds-size_1-of-1 slds-grid slds-gutters_xxx-small">
+                <div class="slds-col slds-size_11-of-12">
+                  <lightning-input type="search"
+                      onchange={handleSearchTermChange}
+                      variant="label-hidden"
+                      class="slds-var-m-bottom_small"
+                      label="Search"
+                      placeholder="Search for Team Members"
+                      value={searchTerm}>
+                  </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-12 slds-col_bump-left">
+                  <lightning-button-icon icon-name="utility:adduser"  variant="brand" alternative-text="Add Team Member" class="slds-m-left_xx-small" title="Add Team Member" onclick={addTeamMember}></lightning-button-icon>
+                </div>
+            </div>
+            <template if:true={teamMembers}>
+                <div class="slds-col slds-size_1-of-1 slds-grid slds-grid_vertical list-members" id="list_members">
+                  <template for:each={teamMembers} for:item="teamMember">
+                      <div class="member-list-card member-not-selected slds-m-bottom_xxx-small" key={teamMember.Id} data-set={teamMember.Id} onclick={showDetails}>
+                          <div class="slds-grid slds-wrap slds-p-around_xx-small" data-set={teamMember.Id}>
+                            <div class="slds-col slds-size_1-of-12 slds-media__figure">
+                              <span class="slds-icon_container" title={teamMember.Name} data-set={teamMember.Id}>
+                                <lightning-icon icon-name="standard:people" size="small" variant="brand" data-set={teamMember.Id}></lightning-icon>
+                                <span class="slds-assistive-text">{teamMember.Name}</span>
+                              </span>
+                            </div>
+                            <div class="slds-col slds-size_9-of-12 slds-media__body">
+                              <h2 class="slds-card__header-title text-class" data-set={teamMember.Id}>
+                                  <span class="slds-card__header-link slds-truncate" data-set={teamMember.Id}>{teamMember.Name}</span>
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                  </template>
+                </div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-col slds-size_1-of-1 slds-grid list-members">
+                    <div class="member-list-card slds-var-p-around_xxx-small">
+                        {error}
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div class="slds-col slds-size_5-of-12 slds-col_bump-left slds-p-around_small">
+            <template if:false={dontShowDetail}>
+                <c-team-member-view team-id={teamId} create={addMember} record-id={recordId} fetch-add-update-event={listenToEventOfTeamMemberView}></c-team-member-view>
+            </template>
+        </div>
+    </div>
+</template>
